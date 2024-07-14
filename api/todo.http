@@ -1,0 +1,46 @@
+
+//GET ALL
+GET http://localhost:8080/api/todos
+###
+
+//GET BY ID
+GET http://localhost:8080/api/1
+###
+
+//GET BY ID THAT DOESN'T EXIST
+GET http://localhost:8080/api/5
+###
+
+//GET BY GOAL
+GET http://localhost:8080/api/
+###
+
+//CREATE
+POST http://localhost:8080/api/todos
+Content-Type: application/json
+
+{
+  "id": 11,
+  "goal": "Hello",
+  "createDate": "17:19 - 03/07/2024",
+  "dueDate": "17:19 - 04/07/2024",
+  "completed": 1,
+  "version": 1
+}
+###
+
+//Update an existing Run
+PUT http://localhost:8080/api/todos
+Content-Type: application/json
+
+{
+  "id": 6,
+  "goal": "Hello World Updated.",
+  "createDate": "17:19 - 03/07/2024",
+  "dueDate": "17:19 - 04/07/2024",
+  "completed": 1
+}
+###
+
+//Delete a Run
+DELETE http://localhost:8080/api/6

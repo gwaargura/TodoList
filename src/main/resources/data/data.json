@@ -1,0 +1,74 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "goal": "Finish project report",
+      "createDate": "2024-07-10",
+      "dueDate": "2024-07-15",
+      "completed": 0
+    },
+    {
+      "id": 2,
+      "goal": "Workout session",
+      "createDate": "2024-07-11",
+      "dueDate": "2024-07-11",
+      "completed": 0
+    },
+    {
+      "id": 3,
+      "goal": "Grocery shopping",
+      "createDate": "2024-07-12",
+      "dueDate": "2024-07-13",
+      "completed": 0
+    },
+    {
+      "id": 4,
+      "goal": "Call the bank",
+      "createDate": "2024-07-10",
+      "dueDate": "2024-07-12",
+      "completed": 1
+    },
+    {
+      "id": 5,
+      "goal": "Read a book",
+      "createDate": "2024-07-10",
+      "dueDate": "2024-07-20",
+      "completed": 0
+    },
+    {
+      "id": 6,
+      "goal": "Prepare presentation",
+      "createDate": "2024-07-13",
+      "dueDate": "2024-07-18",
+      "completed": 0
+    },
+    {
+      "id": 7,
+      "goal": "Doctor appointment",
+      "createDate": "2024-07-14",
+      "dueDate": "2024-07-14",
+      "completed": 0
+    },
+    {
+      "id": 8,
+      "goal": "Plan vacation",
+      "createDate": "2024-07-15",
+      "dueDate": "2024-07-25",
+      "completed": 0
+    },
+    {
+      "id": 9,
+      "goal": "Attend webinar",
+      "createDate": "2024-07-16",
+      "dueDate": "2024-07-16",
+      "completed": 1
+    },
+    {
+      "id": 10,
+      "goal": "Clean the house",
+      "createDate": "2024-07-17",
+      "dueDate": "2024-07-18",
+      "completed": 0
+    }
+  ]
+}
