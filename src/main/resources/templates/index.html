@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome Todo List</title>
+    <!-- MDB CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .list-item {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .goal {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .date {
+            width: 150px;
+            text-align: center;
+        }
+
+        .vertical-line {
+            position: relative;
+        }
+
+        /* .vertical-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #ccc;
+        } */
+    </style>
+</head>
+<body>
+<section class="vh-100" style="background-color: #e2d5de;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <h6 class="mb-3">Awesome Todo List</h6>
+                        <form class="d-flex justify-content-center align-items-center mb-4">
+                            <div data-mdb-input-init class="form-outline flex-fill">
+                                <input type="text" id="form3" class="form-control form-control-lg"/>
+                                <label class="form-label" for="form3">What do you need to do today?</label>
+                            </div>
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                    class="btn btn-primary btn-lg ms-2">Add
+                            </button>
+                        </form>
+                        <div class="vertical-line">
+                            <ul class="list-group mb-0">
+                                <li th:each="todo : ${todos}" class="list-item">
+                                    <div class="goal">
+                                        <span th:text="${todo.goal}"></span>
+                                    </div>
+                                    <div>Due Date:</div>
+                                    <div class="date" th:text="${todo.dueDate}"></div>
+                                    <div class="date">
+                                        <span>Done: </span>
+                                        <input class="form-check-input me-2" type="checkbox" aria-label="..."
+                                               th:checked="${todo.completed == 1}"/>
+                                    </div>
+                                    <a href="#!" data-mdb-tooltip-init title="Remove item">
+                                        <i class="fas fa-times text-primary"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <!-- First Page Link -->
+                                <li class="page-item">
+                                    <a class="page-link" th:href="@{/todos?page=1}">First</a>
+                                </li>
+
+                                <!-- Page Number Links -->
+                                <li th:each="pageNumber : ${#numbers.sequence(1, pages)}"
+                                    th:class="${pageNumber == 1} ? 'page-item active' : 'page-item'">
+                                    <a class="page-link" th:href="${'/api/todos/page='+pageNumber}">[[${pageNumber}]]</a>
+                                </li>
+
+                                <!-- Last Page Link -->
+                                <li class="page-item">
+                                    <a class="page-link" th:href="@{/todos?page=${pages}}">Last</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MDB JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+</body>
+</html>

@@ -1,13 +1,17 @@
 package Main.TodoList.Todo;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.ui.Model;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class TodoController {
 
@@ -17,12 +21,35 @@ public class TodoController {
         this.todoRepository = todoRepository;
     }
 
+
+//    @GetMapping("/todos")
+//    List<Todo> getAll() {
+//        return todoRepository.findAll();
+//    }
+
     @GetMapping("/todos")
-    List<Todo> getAll() {
-        return todoRepository.findAll();
+    public String index(Model model){
+        List<Todo> todos = todoRepository.findAll();
+        model.addAttribute("todos", todos);
+        return "index";
     }
 
-    @GetMapping("/id={id}")
+
+    // Endpoint to handle paginated TODO list
+    @GetMapping("/todos/page={page}")
+    public String index(Model model, @PathVariable Integer page) {
+        int pageSize = 5; // Number of items per page
+        int start = (page - 1) * pageSize + 1;
+        int end = start + pageSize - 1;
+        long pages = todoRepository.count();
+        List<Todo> todos = todoRepository.findByPaging(start, end);
+
+        model.addAttribute("todos", todos);
+        model.addAttribute("pages", pages);
+        return "index";
+    }
+
+    @GetMapping("?id={id}")
     Optional<Todo> getById(@PathVariable int id) {
         Optional<Todo> op = todoRepository.findById(id);
 

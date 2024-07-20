@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 /*
-* This is a representation of writing CRUD methods from scratch using the Spring JdbcClient.
-* This class has been tested and it worked normally.
-* This class will not be used in this project after adding the Spring Data dependency.
-* Current equivalent to this class is TodoRepository
-*
-* */
+ * This is a representation of writing CRUD methods from scratch using the Spring JdbcClient.
+ * This class has been tested and it worked normally.
+ * This class will not be used in this project after adding the Spring Data dependency.
+ * Current equivalent to this class is TodoRepository
+ *
+ * */
 
 @Repository
 public class JdbcClientTodoRepository {
@@ -35,11 +35,11 @@ public class JdbcClientTodoRepository {
     }
 
     public Optional<Todo> getTodo(Integer id) {
-    return client
-            .sql("Select * from Todo Where id = :id")
-            .param((String)"id", id)
-            .query(Todo.class)
-            .optional();
+        return client
+                .sql("Select * from Todo Where id = :id")
+                .param((String) "id", id)
+                .query(Todo.class)
+                .optional();
     }
 
     public void saveAll(List<Todo> todos) {
@@ -57,7 +57,7 @@ public class JdbcClientTodoRepository {
                 .update();
     }
 
-    public void update (Todo todo) {
+    public void update(Todo todo) {
         var updated = client
                 .sql("Update Todo set goal = ?, create_date = ?, due_date = ?, completed = ? where id = ?")
                 .param(todo.goal())
@@ -68,7 +68,7 @@ public class JdbcClientTodoRepository {
                 .update();
     }
 
-    public void delete (Integer id) {
+    public void delete(Integer id) {
         var updated = client
                 .sql("Delete from Todo where id = ?")
                 .param(id)
@@ -76,7 +76,7 @@ public class JdbcClientTodoRepository {
         Assert.state(updated == 1, "Failed to delete Todo with id " + id);
     }
 
-    public int count(){
+    public int count() {
         return client
                 .sql("Select * from Todo")
                 .query()
