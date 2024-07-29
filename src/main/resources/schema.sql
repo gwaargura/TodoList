@@ -1,10 +1,9 @@
 CREATE TABLE IF NOT EXISTS Todo (
-    id INT NOT NULL,
+    id SERIAL NOT NULL,
     goal VARCHAR(100) NOT NULL,
     create_date VARCHAR(100) NOT NULL,
     due_date VARCHAR(100) NOT NULL,
     completed INT NOT NULL,
-    version INT,
     PRIMARY KEY (id)
 );
 

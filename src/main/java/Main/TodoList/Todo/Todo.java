@@ -2,7 +2,6 @@ package Main.TodoList.Todo;
 
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
 
 public record Todo(
         @Id
@@ -11,9 +10,7 @@ public record Todo(
         String goal,
         String createDate,
         String dueDate,
-        Integer completed,
-        @Version
-        Integer version
+        Integer completed
 ) {
 }
 

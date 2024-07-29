@@ -53,8 +53,8 @@ class TodoControllerTest {
                         "Hello",
                         "Now",
                         "Later",
-                        1,
-                        0
+                        1
+
                 )
         );
     }
@@ -78,8 +78,7 @@ class TodoControllerTest {
                 .andExpect(jsonPath("$.goal", is(todo.goal())))
                 .andExpect(jsonPath("$.createDate", is(todo.createDate())))
                 .andExpect(jsonPath("$.dueDate", is(todo.dueDate())))
-                .andExpect(jsonPath("$.completed", is(todo.completed())))
-                .andExpect(jsonPath("$.version", is(todo.version())));
+                .andExpect(jsonPath("$.completed", is(todo.completed())));
     }
 
     @Test
@@ -95,8 +94,7 @@ class TodoControllerTest {
                 "Hello",
                 "Now",
                 "Later",
-                1,
-                0
+                1
         );
         mvc.perform(post("/api/todos")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -112,8 +110,7 @@ class TodoControllerTest {
                 "Hello",
                 "Now",
                 "Later",
-                1,
-                0
+                1
         );
         mvc.perform(put("/api/todos/12")
                         .contentType(MediaType.APPLICATION_JSON)

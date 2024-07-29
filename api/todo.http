@@ -24,8 +24,7 @@ Content-Type: application/json
   "goal": "Hello",
   "createDate": "17:19 - 03/07/2024",
   "dueDate": "17:19 - 04/07/2024",
-  "completed": 1,
-  "version": 1
+  "completed": 1
 }
 ###
 

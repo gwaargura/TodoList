@@ -16,11 +16,12 @@ import java.util.Optional;
 public class TodoController {
 
     private final TodoRepository todoRepository;
+    private int todoId;
 
     public TodoController(TodoRepository todoRepository) {
         this.todoRepository = todoRepository;
+        todoId = (int)todoRepository.count();
     }
-
 
 //    @GetMapping("/todos")
 //    List<Todo> getAll() {
@@ -42,10 +43,17 @@ public class TodoController {
         int start = (page - 1) * pageSize + 1;
         int end = start + pageSize - 1;
         long pages = todoRepository.count();
+        if(pages%5 != 0){
+            pages = pages/5 + 1;
+        }
+        else{
+            pages = pages/5;
+        }
         List<Todo> todos = todoRepository.findByPaging(start, end);
 
         model.addAttribute("todos", todos);
         model.addAttribute("pages", pages);
+        model.addAttribute("totalTodos", todoId);
         return "index";
     }
 
@@ -61,8 +69,8 @@ public class TodoController {
 
     @ResponseStatus(HttpStatus.CREATED) //STATUS = 201
     @PostMapping("/todos")
-    void create(@Valid @RequestBody Todo todo) {
-        todoRepository.save(todo);
+    public void create(@RequestBody Todo todo) {
+        todoRepository.insertTodo(todo.goal(), todo.createDate(), todo.dueDate(), todo.completed());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT) //STATUS = 204

@@ -27,8 +27,7 @@ class JdbcClientTodoRepositoryTest {
                         "Wake up",
                         "Monday 7 pm",
                         "Tuesday 7 am",
-                        1,
-                        0
+                        1
                 )
         );
         repo.create(
@@ -37,7 +36,6 @@ class JdbcClientTodoRepositoryTest {
                         "Eat breakfast",
                         "Monday 7 pm",
                         "Tuesday 8 am",
-                        0,
                         0
                 )
         );
@@ -75,7 +73,6 @@ class JdbcClientTodoRepositoryTest {
                         "Go for a walk",
                         "Monday 7 pm",
                         "Tuesday 9 am",
-                        0,
                         0
                 )
         );
@@ -91,8 +88,7 @@ class JdbcClientTodoRepositoryTest {
                         "Take a walk",
                         "Monday 7 pm",
                         "Tuesday 10 am",
-                        0,
-                        1
+                        0
                 )
         );
     }

@@ -29,8 +29,7 @@ public class InMemoryTodoRepository {
                 todo.goal(),
                 todo.createDate(),
                 todo.dueDate(),
-                todo.completed(),
-                todo.version());
+                todo.completed());
 
         todos.add(newTodo);
     }
@@ -68,15 +67,13 @@ public class InMemoryTodoRepository {
                 "Monday Morning Todo",
                 "Now1",
                 "Later1",
-                1,
-                0));
+                1));
 
         todos.add(new Todo(2,
                 "Monday Night Todo",
                 "Later later",
                 "Later later later later",
-                1,
-                0));
+                1));
     }
 
 }

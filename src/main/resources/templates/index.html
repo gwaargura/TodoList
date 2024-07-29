@@ -2,46 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Awesome Todo List</title>
+    <title>Todo List</title>
     <!-- MDB CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        .list-item {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
+    <link href="/index.css" rel="stylesheet">
 
-        .goal {
-            flex: 1;
-            margin-left: 10px;
-        }
-
-        .date {
-            width: 150px;
-            text-align: center;
-        }
-
-        .vertical-line {
-            position: relative;
-        }
-
-        /* .vertical-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 2px;
-            background-color: #ccc;
-        } */
-    </style>
 </head>
 <body>
 <section class="vh-100" style="background-color: #e2d5de;">
@@ -50,15 +17,31 @@
             <div class="col col-xl-10">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
-                        <h6 class="mb-3">Awesome Todo List</h6>
-                        <form class="d-flex justify-content-center align-items-center mb-4">
-                            <div data-mdb-input-init class="form-outline flex-fill">
-                                <input type="text" id="form3" class="form-control form-control-lg"/>
-                                <label class="form-label" for="form3">What do you need to do today?</label>
+                        <h4 class="mb-3">Todo List</h4>
+                        <div class="totalTodo">
+                            <label for="totalTodos">Total todos: </label>
+                            <p id="totalTodos" th:text="${totalTodos}"></p>
+                        </div>
+                        <form id="todoForm" action="api/todos" method="post" class="mb-4">
+                            <div class="form-outline flex-fill mb-2" data-mdb-input-init>
+                                <input type="text" id="goal" class="form-control form-control-lg"/>
+                                <label class="form-label" for="goal">What do you need to do today?</label>
                             </div>
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                    class="btn btn-primary btn-lg ms-2">Add
-                            </button>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <input type="datetime-local" id="dueDate" oninput="enableBtn()" class="form-control"/>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="dueDate" class="col-form-label">Due date: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <button id="submitBtn" type="submit" data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-primary btn-lg ms-2">Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="message" class="redText col-auto row align-items-center" style="display: none; margin-left: auto">
+                            </div>
                         </form>
                         <div class="vertical-line">
                             <ul class="list-group mb-0">
@@ -107,5 +90,6 @@
 
 <!-- MDB JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+<script src="/index.js"></script>
 </body>
 </html>
